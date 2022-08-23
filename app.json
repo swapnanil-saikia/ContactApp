@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "ContactApp",
+    "slug": "ContactApp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "ContactApp"
+}
