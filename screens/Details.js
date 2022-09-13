@@ -1,11 +1,26 @@
 import { render } from "react-dom";
-import { FlatList, View,Text,StyleSheet, SliderBase } from "react-native";
+import {useLayoutEffect} from'react'
+import { FlatList, View,Text,StyleSheet, SliderBase,Pressable } from "react-native";
 import Icon from "react-native-vector-icons/Feather"
+import MenuComp from "../components/Menu";
 
-function Details({route}){
+function Details({route,navigation}){
+    useLayoutEffect(()=>{
+        navigation.setOptions({
+            headerRight:()=>{             
+            }
+        })
+    },[])
+    function editForm(){
+        navigation.navigate('Form',{action:"edit",user:route.params.user,label:'Edit'})
+    }
     return (
         // <Card></Card>s
         <View style={styles.main}>
+             <Pressable style ={styles.edit}onPress={editForm}>
+                 <Text>Edit</Text>
+           </Pressable>
+
             <View style={styles.basic}>
                 <Text style={styles.name}>{route.params.user.userName}</Text>
                 <Text style={styles.age}>Age {route.params.user.userAge}</Text>
@@ -15,7 +30,7 @@ function Details({route}){
                 <Text style={styles.profile}>Profile</Text>
                 <Text style={styles.des}>{route.params.user.userDescription}</Text>
             </View>
-  
+            {/* <MenuComp/> */}
         </View>
 
     );
@@ -54,5 +69,15 @@ const styles = StyleSheet.create({
         fontSize:20,
         fontWeight:'light'
     },
+    edit:{
+        textAlign:'center',
+        alignItems:'center',
+        justifyContent:'center',
+        marginTop:20,
+        backgroundColor: 'green',
+        width:120,
+        borderRadius:10,
+        height:50
+    }
    
 })
